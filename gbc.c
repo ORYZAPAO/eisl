@@ -142,7 +142,7 @@ void gbcmark(void){
     //mark symbol list for catch
     markcell(catch_symbols);
 	
-	#if __linux
+	#if __linux || __APPLE__
     //mark edit file name
     markcell(ed_name);
 	#endif

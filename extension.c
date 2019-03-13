@@ -5,7 +5,7 @@
 #include <setjmp.h>
 #include <math.h>
 #include <float.h>
-#if __linux
+#if __linux || __APPLE__
 #include <termios.h>
 #include <unistd.h>
 #include <dlfcn.h>
@@ -39,7 +39,7 @@ void initexsubr(void){
     defsubr("MACROEXPAND-1",f_macroexpand_1);
     defsubr("BACKTRACE",f_backtrace);
     defsubr("BREAK",f_break);
-    #if __linux
+    #if __linux || __APPLE__
     defsubr("EDIT",f_edit);
     defsubr("SET-EDITOR",f_set_editor);
     #endif
@@ -85,7 +85,7 @@ int f_ignore(int arglist){
     return(T);
 }
 
-#if __linux
+#if __linux || __APPLE__
 int f_self_introduction(int arglist){
     return(makesym("LINUX"));
 }
@@ -147,7 +147,7 @@ int f_readed_array_list(int arglist){
     return(GET_PROP(arg1));
 }
 
-#if __linux
+#if __linux || __APPLE__
 int f_system(int arglist){
     int arg1;
 
@@ -178,7 +178,7 @@ int f_winexec(int arglist){
 #endif
 
 
-#if __linux
+#if __linux || __APPLE__
 int f_freedll(int arglist){
   
     //dlclose(hmod);

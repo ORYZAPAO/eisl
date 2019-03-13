@@ -75,7 +75,7 @@ typedef struct{
     char after[BUFSIZE];
 } septoken;
 
-#if __linux
+#if __linux || __APPLE__
 struct position{
     int row;
     int col;
@@ -234,7 +234,7 @@ extern int charcnt;
 extern token stok;
 extern int line;
 extern int column;
-#if __linux
+#if __linux || __APPLE__
 extern int buffer[256][10];
 #endif
 
@@ -270,7 +270,7 @@ extern int redef_flag;
 extern int start_flag;
 extern int back_flag;
 extern int ignore_topchk;
-#if __linux
+#if __linux || __APPLE__
 extern int repl_flag;
 #endif
 extern int exit_flag;
@@ -298,7 +298,7 @@ extern int trace_list;
 extern int trace_sym;
 extern int backtrace[BACKSIZE];
 
-#if __linux
+#if __linux || __APPLE__
 //-----editor-----
 extern int ed_row;
 extern int ed_col;
@@ -352,7 +352,7 @@ extern char extended[50][30];
 #define BS      '\b'
 #define DEL     127
 
-#if __linux
+#if __linux || __APPLE__
 #define LEFT    'D'
 #define UP  'A'
 #define RIGHT   'C'
@@ -418,7 +418,7 @@ extern char extended[50][30];
 #define SHELTER_UNDERF	152
 #define SYSTEM_ERR	153
 
-#if __linux
+#if __linux || __APPLE__
 #define ESCHOME printf("\33[1;1H")
 #define ESCTOP  printf("\33[2;1H")
 #define ESCCLS  printf("\33[2J")
@@ -995,7 +995,7 @@ void setval(int sym, int val, int ls);
 void shelterpop(void);
 void shelterpush(int addr);
 void signal_condition(int x, int y);
-#if __linux
+#if __linux || __APPLE__
 void signal_handler(int signo);
 #endif
 void unbind(void);
@@ -1006,7 +1006,7 @@ int f_backtrace(int arglist);
 int f_symbol_function(int arglist);
 int f_symbol_class(int arglist);
 
-#if __linux
+#if __linux || __APPLE__
 int f_set_editor(int arglist);
 int f_edit(int arglist);
 void edit_screen(int x);
@@ -1119,7 +1119,7 @@ int f_classp(int arglist);
 char* get_name(int x);
 double get_flt(int x);
 
-#if __linux
+#if __linux || __APPLE__
 void display_buffer(void);
 int check_token_buffer(int col);
 int findlparen_buffer(int col);

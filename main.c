@@ -9,8 +9,8 @@ written by kenichi sasagawa 2016/4~
 #include <setjmp.h>
 #include <math.h>
 #include <limits.h>
-#include <omp.h>
-#if __linux
+//#include <omp.h>
+#if __linux || __APPLE__
 #include <signal.h>
 #endif
 #if _WIN32
@@ -88,7 +88,7 @@ int charcnt; //for format-tab. store number of chars up to now.
 token stok = {GO,OTHER};
 int line;
 int column;
-#if __linux
+#if __linux || __APPLE__
 int buffer[256][10];
 #endif
 
@@ -153,7 +153,7 @@ HMODULE loadeddll;
 int examin_sym;
 int stepper_flag = 0;
 
-#if __linux
+#if __linux || __APPLE__
 //-----editor-----
 int ed_row;
 int ed_col;
@@ -260,7 +260,7 @@ int main(int argc, char *argv[]){
     initexsubr();
     initsyntax();
     initgeneric();
-    #if __linux
+    #if __linux || __APPLE__
     signal(SIGINT, signal_handler);
 	#endif
 	#if _WIN32
@@ -349,7 +349,7 @@ void initpt(void){
     }
 }
 
-#if __linux
+#if __linux || __APPLE__
 void signal_handler(int signo){
     exit_flag = 1;
 }
@@ -369,7 +369,7 @@ BOOL WINAPI CtrlHandler(DWORD CtrlEvent){
 #endif
 
 
-#if __linux
+#if __linux || __APPLE__
 //-------read()--------
 int readc(void){
     int c;
@@ -1112,7 +1112,7 @@ void printflt(double x){
     }
 }
 
-#if __linux
+#if __linux || __APPLE__
 void printlong(int addr){
     if(GET_OPT(output_stream) != EISL_OUTSTR){
         fprintf(GET_PORT(output_stream),"%lld", GET_LONG(addr));
@@ -1249,7 +1249,7 @@ void printstr(int addr){
     }
 }
 
-#if __linux
+#if __linux || __APPLE__
 void printchar(int addr){
     char c;
 

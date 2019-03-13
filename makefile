@@ -23,5 +23,5 @@ extension.o : extension.c eisl.h
 edit.o : edit.c eisl.h
 	gcc -O3 -Wno-pointer-to-int-cast -Wall -c edit.c -lm
 .PHONY: clean
-clean: -lm
+clean: #-lm
 	rm -f eisl *.o

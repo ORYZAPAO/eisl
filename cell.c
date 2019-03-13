@@ -359,7 +359,7 @@ void cellprint(int addr){
         case FLTN:  printf("FLTN   ");
         			printf("%f" , GET_FLT(addr));
          			break;
-        #if __linux
+        #if __linux || __APPLE__
         case LONGN: printf("LONGN  ");
         			printf("%lld" , GET_LONG(addr));
                     break;
